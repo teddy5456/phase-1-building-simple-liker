@@ -2,7 +2,73 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
+const likeButtons = document.querySelectorAll('.like');
+likeButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    mimicServerCall()
+  })
+})
+
+mimicServerCall()
+  .then(response => {
+    
+  })
+  .catch(error => {
+   
+    const modal = document.getElementById('modal');
+    const modalMessage = document.getElementById('modal-message');
+    modal.classList.remove('hidden');
+    modalMessage.textContent = error;
+    setTimeout(() => {
+      modal.classList.add('hidden');
+    }, 3000);
+  });
+
+  mimicServerCall()
+  .then(response => {
+    
+    const heart = event.target;
+    heart.classList.add('activated-heart');
+    heart.textContent = 'Liked! ❤️';
+  })
+  .catch(error => {
+    
+    const modal = document.getElementById('modal');
+    const modalMessage = document.getElementById('modal-message');
+    modal.classList.remove('hidden');
+    modalMessage.textContent = error;
+    setTimeout(() => {
+      modal.classList.add('hidden');
+    }, 3000);
+  });
+
+  const likeButtons = document.querySelectorAll('.like');
+likeButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    mimicServerCall()
+      .then(response => {
+        const heart = event.target;
+        heart.classList.add('activated-heart');
+        heart.textContent = 'Liked! ❤️';
+      })
+      .catch(error => {
+        const modal = document.getElementById('modal');
+        const modalMessage = document.getElementById('modal-message');
+        modal.classList.remove('hidden');
+        modalMessage.textContent = error;
+        setTimeout(() => {
+          modal.classList.add('hidden');
+        }, 3000);
+      });
+  });
+  
+  button.addEventListener('dblclick', () => {
+    const heart = event.target;
+    heart.classList.remove('activated-heart');
+    heart.textContent = 'Like! ♡';
+  });
+});
+
 
 
 
