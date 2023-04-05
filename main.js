@@ -1,74 +1,26 @@
-// Defining text characters for the empty and full hearts for you to use later.
-const EMPTY_HEART = '♡'
-const FULL_HEART = '♥'
 
 const likeButtons = document.querySelectorAll('.like');
-likeButtons.forEach(button => {
-  button.addEventListener('click', () => {
+
+
+likeButtons.forEach(likeButton => {
+  likeButton.addEventListener('click', () => {
     mimicServerCall()
-  })
-})
-
-mimicServerCall()
-  .then(response => {
-    
-  })
-  .catch(error => {
-   
-    const modal = document.getElementById('modal');
-    const modalMessage = document.getElementById('modal-message');
-    modal.classList.remove('hidden');
-    modalMessage.textContent = error;
-    setTimeout(() => {
-      modal.classList.add('hidden');
-    }, 3000);
-  });
-
-  mimicServerCall()
-  .then(response => {
-    
-    const heart = event.target;
-    heart.classList.add('activated-heart');
-    heart.textContent = 'Liked! ❤️';
-  })
-  .catch(error => {
-    
-    const modal = document.getElementById('modal');
-    const modalMessage = document.getElementById('modal-message');
-    modal.classList.remove('hidden');
-    modalMessage.textContent = error;
-    setTimeout(() => {
-      modal.classList.add('hidden');
-    }, 3000);
-  });
-
-  const likeButtons = document.querySelectorAll('.like');
-likeButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    mimicServerCall()
-      .then(response => {
-        const heart = event.target;
-        heart.classList.add('activated-heart');
-        heart.textContent = 'Liked! ❤️';
+      .then(() => {
+        likeButton.classList.toggle('activated-heart');
+        likeButton.innerHTML = 'Liked! &#x2665;';
       })
-      .catch(error => {
+      .catch(() => {
+
         const modal = document.getElementById('modal');
         const modalMessage = document.getElementById('modal-message');
         modal.classList.remove('hidden');
-        modalMessage.textContent = error;
+        modalMessage.innerHTML = 'Something went wrong. Please try again.';
         setTimeout(() => {
           modal.classList.add('hidden');
         }, 3000);
       });
   });
-  
-  button.addEventListener('dblclick', () => {
-    const heart = event.target;
-    heart.classList.remove('activated-heart');
-    heart.textContent = 'Like! ♡';
-  });
 });
-
 
 
 
